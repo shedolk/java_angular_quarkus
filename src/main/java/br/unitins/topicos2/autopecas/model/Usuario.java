@@ -4,13 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Estado extends DefaultEntity{
+public class Usuario extends DefaultEntity {
     
     @Column(nullable = false, length = 60)
     private String nome;
 
-    @Column(nullable = false, length = 2)
-    private String sigla;
+    @Column(nullable = false, length = 60)
+    private String email;
 
     public String getNome() {
         return nome;
@@ -20,11 +20,13 @@ public class Estado extends DefaultEntity{
         this.nome = nome;
     }
 
-    public String getSigla() {
-        return sigla;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    
 }

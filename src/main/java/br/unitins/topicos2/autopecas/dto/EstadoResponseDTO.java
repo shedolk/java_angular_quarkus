@@ -14,5 +14,4 @@ public record EstadoResponseDTO(
             estado.getSigla()
         );
     }
-    
 }
