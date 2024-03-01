@@ -1,5 +1,5 @@
 package br.unitins.topicos2.autopecas.resource;
-/*
+
 import org.jboss.logging.Logger;
 
 import br.unitins.topicos2.autopecas.dto.CidadeDTO;
@@ -23,11 +23,11 @@ import jakarta.ws.rs.core.Response.Status;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class CidadeResource {
-    
+
     @Inject
     CidadeService service;
-
-    private static final Logger LOG = Logger.getLogger(EstadoResource.class);
+    
+    private static final Logger LOG = Logger.getLogger(CidadeResource.class);
 
     @POST
     public Response create(CidadeDTO dto) {
@@ -39,7 +39,7 @@ public class CidadeResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    public Response update(Long id, CidadeDTO dto) {
+    public Response update(CidadeDTO dto, @PathParam("id") Long id) {
         service.update(id, dto);
         return Response.status(Status.NO_CONTENT).build();
     }
@@ -53,7 +53,7 @@ public class CidadeResource {
     }
 
     @GET
-    public Response getAll() {
+    public Response findAll() {
         LOG.debug("Exemplo de debug.");
         return Response.ok(service.getAll()).build();
     }
@@ -70,4 +70,3 @@ public class CidadeResource {
         return Response.ok(service.findByNome(nome)).build();
     }
 }
-*/

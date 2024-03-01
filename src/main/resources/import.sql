@@ -6,3 +6,9 @@ insert into estado (nome, sigla) values( 'Pará', 'PA');
 
 insert into usuario (nome, email) values( 'Matheus','Matheus@gmail.com');
 insert into usuario (nome, email) values( 'Filipe','Filipe@gmail.com');
+
+insert into cidade (nome, id_estado) values( 'Palmas', 1);
+insert into cidade (nome, id_estado) values( 'Paraíso', 1);
+insert into cidade (nome, id_estado) values( 'Gurupi', 1);
+insert into cidade (nome, id_estado) values( 'Goiânia', 2);
+insert into cidade (nome, id_estado) values( 'Anápolis', 2);
