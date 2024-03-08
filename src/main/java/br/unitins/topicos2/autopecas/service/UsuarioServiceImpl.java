@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import br.unitins.topicos2.autopecas.dto.UsuarioDTO;
 import br.unitins.topicos2.autopecas.dto.UsuarioResponseDTO;
+import br.unitins.topicos2.autopecas.dto.UsuarioResponseDTO2;
 import br.unitins.topicos2.autopecas.model.Usuario;
 import br.unitins.topicos2.autopecas.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -18,8 +19,8 @@ import jakarta.validation.Validator;
 import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
-public class UsuarioServiceImpl implements UsuarioService{
-    
+public class UsuarioServiceImpl implements UsuarioService {
+
     @Inject
     UsuarioRepository usuarioRepository;
 
@@ -34,21 +35,23 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public UsuarioResponseDTO findById(Long id) {
+    public UsuarioResponseDTO2 findById(Long id) {
         Usuario usuario = usuarioRepository.findById(id);
         if (usuario == null)
             throw new NotFoundException("Usuario não encontrado.");
-        return UsuarioResponseDTO.valueOf(usuario);
+        return UsuarioResponseDTO2.valueOf(usuario);
     }
 
     @Override
     @Transactional
     public UsuarioResponseDTO create(@Valid UsuarioDTO usuarioDTO) throws ConstraintViolationException {
-        //validar(usuarioDTO);
+        // validar(usuarioDTO);
 
         Usuario entity = new Usuario();
         entity.setNome(usuarioDTO.nome());
         entity.setEmail(usuarioDTO.email());
+        entity.setIdade(usuarioDTO.idade());
+        entity.setSenha(usuarioDTO.senha());
 
         usuarioRepository.persist(entity);
 
@@ -57,13 +60,15 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     @Transactional
-    public UsuarioResponseDTO update(Long id, UsuarioDTO usuarioDTO) throws ConstraintViolationException{
+    public UsuarioResponseDTO update(Long id, UsuarioDTO usuarioDTO) throws ConstraintViolationException {
         validar(usuarioDTO);
-   
+
         Usuario entity = usuarioRepository.findById(id);
 
         entity.setNome(usuarioDTO.nome());
         entity.setEmail(usuarioDTO.email());
+        entity.setIdade(usuarioDTO.idade());
+        entity.setSenha(usuarioDTO.senha());
 
         return UsuarioResponseDTO.valueOf(entity);
     }
