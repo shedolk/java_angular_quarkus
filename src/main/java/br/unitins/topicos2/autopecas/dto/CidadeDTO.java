@@ -3,10 +3,7 @@ package br.unitins.topicos2.autopecas.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record CidadeDTO(
-    @NotBlank(message = "O campo nome deve ser informado.")
-    String nome,
+public record CidadeDTO(@NotBlank(message = "O campo nome deve ser informado.") String nome,
 
-    @NotNull(message = "O campo idEstado deve ser informado.")
-    Long idEstado
-) { }
+        @NotNull(message = "O campo idEstado deve ser informado.") Long idEstado) {
+}
