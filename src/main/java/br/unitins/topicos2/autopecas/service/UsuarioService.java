@@ -14,9 +14,9 @@ public interface UsuarioService {
 
     UsuarioResponseDTO2 findById(Long id);
 
-    UsuarioResponseDTO create(@Valid UsuarioDTO dto);
+    UsuarioResponseDTO2 create(@Valid UsuarioDTO dto);
 
-    UsuarioResponseDTO update(Long id, UsuarioDTO dto);
+    UsuarioResponseDTO2 update(Long id, UsuarioDTO dto);
 
     void delete(Long id);
 

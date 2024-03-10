@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import br.unitins.topicos2.autopecas.dto.UsuarioDTO;
 import br.unitins.topicos2.autopecas.dto.UsuarioResponseDTO;
 import br.unitins.topicos2.autopecas.dto.UsuarioResponseDTO2;
+import br.unitins.topicos2.autopecas.model.Perfil;
 import br.unitins.topicos2.autopecas.model.Usuario;
 import br.unitins.topicos2.autopecas.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -44,33 +45,34 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public UsuarioResponseDTO create(@Valid UsuarioDTO usuarioDTO) throws ConstraintViolationException {
+    public UsuarioResponseDTO2 create(@Valid UsuarioDTO usuarioDTO) throws ConstraintViolationException {
         // validar(usuarioDTO);
 
-        Usuario entity = new Usuario();
-        entity.setNome(usuarioDTO.nome());
-        entity.setEmail(usuarioDTO.email());
-        entity.setIdade(usuarioDTO.idade());
-        entity.setSenha(usuarioDTO.senha());
+        Usuario usuario = new Usuario();
+        usuario.setNome(usuarioDTO.nome());
+        usuario.setEmail(usuarioDTO.email());
+        usuario.setCpf(usuarioDTO.cpf());
+        usuario.setSenha(usuarioDTO.senha());
+        usuario.setPerfil(Perfil.valueOf(usuarioDTO.idPerfil()));
 
-        usuarioRepository.persist(entity);
+        usuarioRepository.persist(usuario);
 
-        return UsuarioResponseDTO.valueOf(entity);
+        return UsuarioResponseDTO2.valueOf(usuario);
     }
 
     @Override
     @Transactional
-    public UsuarioResponseDTO update(Long id, UsuarioDTO usuarioDTO) throws ConstraintViolationException {
+    public UsuarioResponseDTO2 update(Long id, UsuarioDTO usuarioDTO) throws ConstraintViolationException {
         validar(usuarioDTO);
 
-        Usuario entity = usuarioRepository.findById(id);
+        Usuario usuario = usuarioRepository.findById(id);
 
-        entity.setNome(usuarioDTO.nome());
-        entity.setEmail(usuarioDTO.email());
-        entity.setIdade(usuarioDTO.idade());
-        entity.setSenha(usuarioDTO.senha());
+        usuario.setNome(usuarioDTO.nome());
+        usuario.setEmail(usuarioDTO.email());
+        usuario.setCpf(usuarioDTO.cpf());
+        usuario.setSenha(usuarioDTO.senha());
 
-        return UsuarioResponseDTO.valueOf(entity);
+        return UsuarioResponseDTO2.valueOf(usuario);
     }
 
     private void validar(UsuarioDTO estadoDTO) throws ConstraintViolationException {

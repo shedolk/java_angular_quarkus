@@ -3,8 +3,7 @@ package br.unitins.topicos2.autopecas.resource;
 import org.jboss.logging.Logger;
 
 import br.unitins.topicos2.autopecas.dto.UsuarioDTO;
-import br.unitins.topicos2.autopecas.dto.UsuarioResponseDTO;
-
+import br.unitins.topicos2.autopecas.dto.UsuarioResponseDTO2;
 import br.unitins.topicos2.autopecas.service.UsuarioService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -24,7 +23,7 @@ import jakarta.ws.rs.core.Response.Status;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UsuarioResource {
-    
+
     @Inject
     UsuarioService service;
 
@@ -32,8 +31,8 @@ public class UsuarioResource {
 
     @POST
     public Response create(UsuarioDTO dto) {
-        UsuarioResponseDTO retorno = service.create(dto);
-        //return Response.status(Status.CREATED).entity(retorno).build();
+        UsuarioResponseDTO2 retorno = service.create(dto);
+        // return Response.status(Status.CREATED).entity(retorno).build();
         return Response.status(201).entity(retorno).build();
     }
 
@@ -64,7 +63,7 @@ public class UsuarioResource {
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
-    
+
     @GET
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {

@@ -13,21 +13,15 @@ public class Usuario extends DefaultEntity {
     private String email;
 
     @Column(nullable = false, length = 60)
-    private int idade;
+    private String cpf;
 
     @Column(nullable = false, length = 60)
     private String senha;
 
+    private Perfil perfil;
+
     public String getNome() {
         return nome;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public void setNome(String nome) {
@@ -42,12 +36,27 @@ public class Usuario extends DefaultEntity {
         this.email = email;
     }
 
-    public int getIdade() {
-        return idade;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
 }
